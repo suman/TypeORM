@@ -35,8 +35,7 @@ app.get('/createUser', async (req: Request, res:Response) => {
 });
 
 
-app.get('/nameonly', async (req: Request, res:Response) => {
-
+app.get('/findWithName', async (req: Request, res:Response) => {
     const userRepo = AppDataSource.getRepository(User);
     const resultData = await userRepo.find(
         {
@@ -54,12 +53,12 @@ app.get('/', (req: Request, res:Response) => {
     res.send("<h2>Hello I am express</h2>")
 });
 
-app.get('/update', async (req: Request, res:Response) => {
+app.get('/updateUserName', async (req: Request, res:Response) => {
     const userRepo = AppDataSource.getRepository(User);
     res.json(await userRepo.update(1, {firstName: 'kamal'}));
 });
 
-app.get('/findrelation', async (req: Request, res:Response) => {
+app.get('/findUserWithRelation', async (req: Request, res:Response) => {
     const userRepo = AppDataSource.getRepository(User);
     const resultData = await userRepo.find({
         relations: ['profile']
@@ -67,7 +66,7 @@ app.get('/findrelation', async (req: Request, res:Response) => {
     res.json(resultData);
 });
 
-app.get('/findprofile', async (req: Request, res:Response) => {
+app.get('/findProfileWithRelation', async (req: Request, res:Response) => {
     const profileRepo = AppDataSource.getRepository(Profile);
     const resultData = await profileRepo.find({
         'relations' : ['user']
